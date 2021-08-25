@@ -12,7 +12,7 @@ e.emp_no = s.emp_no
 ORDER BY emp_no
 
 -- Select the first name, last name, and hiring date for all employees hired in 1986 
-SELECT * FROM employees
+
 
 SELECT
 first_name,
@@ -64,7 +64,19 @@ e.first_name ='Hercules' AND (lower(e.last_name) like 'b%')
 
 -- Select employee number, last name, first name, and department name of all employees in the Sales department, ordered by employee number
 SELECT
-* FROM departments
+e.emp_no,
+e.last_name,
+e.first_name,
+d.dept_name
+FROM
+employees e
+LEFT JOIN dept_emp de ON  e.emp_no = de.emp_no
+INNER JOIN
+departments d
+ON
+de.dept_no = d.dept_no
+WHERE dept_name = 'Sales' 
+ORDER BY emp_no
 
 -- Select employee number, last name, first name, and department name of all employees in the 'Sales' OR the 'Development' department, ordered by employee number
 SELECT
